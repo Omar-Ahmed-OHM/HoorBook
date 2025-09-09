@@ -1,0 +1,80 @@
+[
+    {
+      "id": 1,
+      "title": "Post Title 1",
+      "body": "This is the content of post 1.",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "Post Title 2",
+      "body": "This is the content of post 2.",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "title": "Post Title 3",
+      "body": "This is the content of post 3.",
+      "userId": 2
+    },
+    {
+      "id": 4,
+      "title": "Post Title 4",
+      "body": "This is the content of post 4.",
+      "userId": 2
+    },
+    {
+      "id": 5,
+      "title": "Post Title 5",
+      "body": "This is the content of post 5.",
+      "userId": 3
+    },
+    {
+      "id": 6,
+      "title": "Post Title 6",
+      "body": "This is the content of post 6.",
+      "userId": 3
+    },
+    {
+      "id": 7,
+      "title": "Post Title 7",
+      "body": "This is the content of post 7.",
+      "userId": 4
+    },
+    {
+      "id": 8,
+      "title": "Post Title 8",
+      "body": "This is the content of post 8.",
+      "userId": 4
+    },
+    {
+      "id": 9,
+      "title": "Post Title 9",
+      "body": "This is the content of post 9.",
+      "userId": 5
+    },
+    {
+      "id": 10,
+      "title": "Post Title 10",
+      "body": "This is the content of post 10.",
+      "userId": 5
+    },
+    {
+      "id": 11,
+      "title": "Post Title 11",
+      "body": "This is the content of post 11.",
+      "userId": 6
+    },
+    {
+      "id": 12,
+      "title": "Post Title 12",
+      "body": "This is the content of post 12.",
+      "userId": 6
+    },
+    {
+      "id": 13,
+      "title": "Post Title 13",
+      "body": "This is the content of post 13.",
+      "userId": 7
+    }
+]  
