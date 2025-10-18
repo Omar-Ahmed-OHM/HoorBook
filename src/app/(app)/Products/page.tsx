@@ -249,6 +249,8 @@ return (
             type="text"
             placeholder="إبحث عن منتج..."
             className="bg-transparent flex-1 text-sm focus:outline-none text-gray-700 placeholder:text-gray-400"
+              value={inputValue}
+  onChange={(e) => setInputValue(e.target.value)}
           />
         </div>
       </div>
