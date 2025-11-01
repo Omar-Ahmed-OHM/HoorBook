@@ -160,7 +160,6 @@ return (
     country="eg"
     value={formData.phone}
     onChange={(value) => {
-      // إزالة الصفر بعد كود الدولة (20) إن وجد
       let cleanedValue = value;
 
       if (cleanedValue.startsWith('20') && cleanedValue[2] === '0') {
