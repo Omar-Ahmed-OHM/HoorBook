@@ -9,6 +9,7 @@ import { BaseUrl, headers } from "../../components/Baseurl";
 import SmartNavbar from "@/app/components/ui/Navbar";
 import Loading from "@/app/components/ui/loading";
 import toast from "react-hot-toast";
+import Link from "next/link";
 const EditLocationPage = () => {
     const [editOpen, setEditOpen] = useState(false);
     const [selectedAddress, setSelectedAddress] = useState<AddressData | null>(
@@ -141,8 +142,23 @@ const handeldelete_address = (id: number) => {
                             ))}
                         </div>
                     )}
+                    <div className="flex justify-center items-center mt-10">
+  <Link
+    href={{ pathname: "/location", query: { redirect: "/editLocation" } }}
+    className="group relative flex items-center justify-center gap-2 rounded-lg 
+               bg-gradient-to-r from-purple-600 via-pink-500 to-purple-700 
+               text-white py-2 px-5 text-lg 
+               shadow-lg hover:shadow-xl transition-all duration-300 
+               hover:scale-105 hover:from-purple-700 hover:to-pink-600"
+  >
+    <span >إضافة عنوان جديد</span>
+    
+
+  </Link>
+</div>
                 </div>
             </Container>
+            {/* Popup for editing address */}
             <EditAddressPoppup
                 open={editOpen}
                 address={selectedAddress}

@@ -11,7 +11,7 @@ import { buildPayload } from "@/app/components/ui/handleAddress";
 import SmartNavbar from "@/app/components/ui/Navbar";
 import ErrorPopUP from "@/app/components/ui/pop-up_show_message_error";
 import Loading from "@/app/components/ui/loading";
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 const API_BASE = `${BaseUrl}api`;
 
 const Location = () => {
@@ -32,11 +32,14 @@ const Location = () => {
   const [areas, setAreas] = useState<any[]>([]);
   const [modal, setModal] = useState<{show:boolean,message:string}>({ show: false, message: "" });
    const [loading, setLoading] = useState<boolean>(false);
-   const router = useRouter();
+   
 
   const updateField = (field: keyof typeof formData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+   const router = useRouter();
+   const searchParams=useSearchParams();
+   const  redirectTo =searchParams.get('redirect') || '/';
 
   useEffect(() => {
     axios.get(`${API_BASE}/governorates`).then(res => setGovernorates(res.data.data)).catch(() => {
@@ -97,7 +100,7 @@ const Location = () => {
       const res = await axios.post(`${API_BASE}/address`, buildPayload(formData), { headers });
       if (res.status === 200) {
         toast.success("تم حفظ العنوان بنجاح!");
-        router.push("/cart")
+        router.push(redirectTo)
         setFormData({
           name: "",
           phone: "",
@@ -264,6 +267,7 @@ return (
       </Container>
     </div>
 
+    {/* المودال */}
     {modal.show && (
       <ErrorPopUP message={modal.message} setClose={setModal}/>
     )}

@@ -56,7 +56,7 @@ export default function ProfilePage() {
             <div className="w-full mt-2 bg-gradient-to-r from-purple-700 to-orange-400 text-white font-semibold py-2 rounded-lg shadow-md hover:opacity-90 transition">
               <p>
               نقاطى : <span>  
-                  {profile?.points}     
+                  {profile?.points.toFixed(2)}     
 </span>   
 
               </p>
@@ -69,13 +69,12 @@ export default function ProfilePage() {
                 <p className="text-md font-semibold text-purple-700">{profile?.type_name}</p>
               </div>
 
-              <div className="bg-orange-100 rounded-xl p-4">
+<div className="bg-orange-100 rounded-xl p-4">
                 <Star className="text-orange-500 mb-2 mx-auto" />
                 <p className="text-sm text-gray-700">النقاط</p>
  <p className="text-lg font-bold text-orange-600">
-  {(profile?.points ?? 0) * Number(profile?.pointsSettings?.point_price  ?? 0)}
+  {((profile?.points ?? 0) * Number(profile?.pointsSettings?.point_price ?? 0)).toFixed(2)}
 </p>
-
               </div>
 
               
