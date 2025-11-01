@@ -49,7 +49,7 @@ const Location = () => {
 
   useEffect(() => {
     if (!formData.governorate) return;
-    const id = governorates.find(g => g.name_ar === formData.governorate)?.id;
+    const id = governorates.find(g  => g.name_ar === formData.governorate)?.id;
     axios.get(`${API_BASE}/cities?governorate_id=${id}`).then(res => setCities(res.data.data)).catch(() => {
       setModal({ show: true, message: "فشل تحميل المدن" });
     });
