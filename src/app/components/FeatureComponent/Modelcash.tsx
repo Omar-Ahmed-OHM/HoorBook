@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { CheckCircle2, MapPin, Pencil, Plus, Wallet, X } from "lucide-react";
+import { CheckCircle2, Home, MapPin, Pencil, Plus, Wallet, X } from "lucide-react";
 import Image from "next/image";
 import { AddressData, Checkout, Profile, surecash } from "@/app/lib/type";
 import { BaseUrl, headers } from "../Baseurl";
@@ -21,13 +21,14 @@ export const Cash = ({
     oncheckout,
     close,
     discount
-}: // color_id,
+}: 
     Checkout) => {
          const router=useRouter();
 
     const [addressList, setAddressList] = useState<AddressData[]>([]);
     const [paymentMethod, setPaymentMethod] = useState("cash");
     const [usePoints, setUsePoints] = useState<string>("0");
+
     const [chooseAddress, setChooseAddress] = useState<boolean>(false);
     const [editOpen, setEditOpen] = useState(false);
     const [selectedAddress, setSelectedAddress] = useState<AddressData | null>(
@@ -50,6 +51,7 @@ export const Cash = ({
     const [check, setcheck] = useState(false);
     const order = `${BaseUrl}api/orders`;
     const delete_address = `${BaseUrl}api/address/`;
+
 
     const url = `${BaseUrl}api/user/profile`;
 
@@ -81,6 +83,7 @@ export const Cash = ({
 };
 
         getProfile();
+
         fetchAddresses();
     }, []);
 
@@ -139,7 +142,7 @@ export const Cash = ({
         console.log("📦 الطلب المرسل:", finalSure);
     };
 
-  
+
   const handleSave = async () => {
     try {
         const res = await axios.get(`${BaseUrl}api/address`, { headers });
@@ -162,6 +165,7 @@ export const Cash = ({
                 <button
                     className="absolute top-3 left-3 text-xl text-gray-500 hover:text-red-500"
                     onClick={close}>
+
 
                     <X />
                 </button>
@@ -201,13 +205,14 @@ export const Cash = ({
         className="w-5 h-5 accent-purple-700 cursor-pointer"
         />
 
+
 </div>
 <div>
         <button
           className="p-2 rounded-full hover:bg-purple-200 transition"
           title="تعديل"
           onClick={(e) => {
-            e.stopPropagation(); // prevent card click
+            e.stopPropagation();
             setSelectedAddress(addr);
             setEditOpen(true);
           }}
@@ -244,6 +249,12 @@ export const Cash = ({
                         إضافة عنوان جديد
                     </Link>
 
+                  <Link
+                        href={"/editLocation"}
+                        className="mt-2 flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200">
+                        <Home size={16} />
+                        إدارة العناوين
+                    </Link>
                
                 </div>
 
@@ -276,6 +287,7 @@ export const Cash = ({
                 </div>
 
 
+
                 <div className="points w-full p-3 flex gap-5 bg-gradient-to-r from-purple-700 to-orange-400 text-white font-semibold py-2 rounded-lg shadow-md hover:opacity-90 transition">
                     <span>نقاطك : {profile?.points}</span>
                     <span> رصيد النقاط : {((profile?.points ?? 0) * Number(profile?.pointsSettings?.point_price ?? 0)).toFixed(2)} ج.م</span>
@@ -296,6 +308,7 @@ export const Cash = ({
                         استخدام النقاط المتاحة للحصول على خصم
                     </label>
                 </div>
+
 
 
                 <div className="grid grid-cols-1  sm:grid-cols-3 md:grid-cols-1 gap-4 mb-8 text-center text-sm sm:text-base">
@@ -369,6 +382,7 @@ export const Cash = ({
                     </button>
                 </div>}
             </div>
+
             <EditAddressPoppup
                 open={editOpen}
                 address={selectedAddress}
@@ -377,5 +391,6 @@ export const Cash = ({
             />
         </div>
     );
+
 
 };

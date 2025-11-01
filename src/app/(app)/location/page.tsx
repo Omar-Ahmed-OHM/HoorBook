@@ -4,7 +4,6 @@ import Container from "@/app/components/Container";
 import { Sparkles, Building2, LandmarkIcon, MapPin, Map, User } from "lucide-react";
 import axios from "axios";
 import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
 import BottomSelectField from "@/app/components/ui/checkbox";
 import { BaseUrl, headers } from "@/app/components/Baseurl";
 import toast, { Toaster } from "react-hot-toast";
@@ -265,7 +264,6 @@ return (
       </Container>
     </div>
 
-    {/* المودال */}
     {modal.show && (
       <ErrorPopUP message={modal.message} setClose={setModal}/>
     )}

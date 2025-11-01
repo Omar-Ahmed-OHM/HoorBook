@@ -15,6 +15,7 @@ import { BaseUrl, headers } from "@/app/components/Baseurl";
 import { CallApi } from "@/app/lib/utilits";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
+import Not_found from '../../../../public/asset/images/notfound.png'
 export default function ProductPage() {
   const [inputValue, setInputValue] = useState("");
     const { cartCount, refreshCartCount } = useCartStore()
@@ -285,11 +286,19 @@ return (
 </div>
 
     </>
-      {renderProducts.length === 0 ? (
-   <div className="flex justify-center items-center min-h-[60vh]">
-      <div className="w-16 h-16 border-8 border-purple-600 border-t-transparent rounded-full animate-spin" />
-    </div>
-      ) : (
+{loading && renderProducts.length === 0 ? (
+  <div className="flex justify-center items-center min-h-[60vh]">
+    <div className="w-16 h-16 border-8 border-purple-600 border-t-transparent rounded-full animate-spin" />
+  </div>
+) : !loading && renderProducts.length === 0 && inputValue.trim() ? (
+  <div className="flex flex-col justify-center items-center min-h-[60vh] text-center">
+    <Image src={Not_found} alt="not found" unoptimized width={200}/>
+    <p className="text-lg font-semibold text-gray-700">لم نجد ما بحثت عنه</p>
+    <p className="text-sm text-gray-500 mt-2">جرب كلمة بحث مختلفة</p>
+  </div>
+) : (
+
+
         <div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2  xl:grid-cols-3  gap-4 sm:gap-6 px-2 sm:px-6 lg:px-12 xl:gap-3 mt-20"
           dir="rtl"
@@ -318,7 +327,6 @@ return (
         </div>
       )}
 
-      {/* زر الفلاتر */}
       <button
         onClick={() => setShowFilters(!showFilters)}
         className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[999] w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-2xl flex items-center justify-center text-white text-xl sm:text-2xl transition-transform duration-500 hover:rotate-12 ${
@@ -414,13 +422,7 @@ return (
     </motion.div>
   )}
 </AnimatePresence>
-
-
     </div>
 
-    
   );
-
-
-
 }

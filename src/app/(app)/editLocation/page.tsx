@@ -143,7 +143,6 @@ const handeldelete_address = (id: number) => {
                     )}
                 </div>
             </Container>
-            {/* Popup for editing address */}
             <EditAddressPoppup
                 open={editOpen}
                 address={selectedAddress}

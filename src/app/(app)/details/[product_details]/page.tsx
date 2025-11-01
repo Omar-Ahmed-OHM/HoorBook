@@ -19,9 +19,7 @@ import { useCartStore } from "@/app/store/cartStore";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+
 import { NavigationOptions } from "swiper/types";
 export default function Details() {
   const [showPopup, setShowPopup] = useState(false);
@@ -270,8 +268,9 @@ const imgcomment=`${BaseUrl}${details.image}`
             {(details.colors.length>0)?(
               <>
               <p className="text-sm text-gray-700 mb-2">اختر اللون:</p>
-            <div className="flex gap-3 flex-wrap">
-              {details.colors.map((color) => (
+ <div className="flex gap-3 flex-wrap ">
+              {[...details.colors].sort((a,b)=>b.stock - a.stock)
+              .map((color) => (
                 <div
                   key={color.id}
                   onClick={() => {

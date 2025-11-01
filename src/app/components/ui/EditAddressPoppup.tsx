@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { AddressData } from "../../lib/type";
 import BottomSelectField from "./checkbox";
 import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
 import { Sparkles, Building2, LandmarkIcon, MapPin, User } from "lucide-react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -14,7 +13,7 @@ interface EditAddressPoppupProps {
     open: boolean;
     address: AddressData | null;
     onClose: () => void;
-    onSave?: () => void; // add this
+    onSave?: () => void;
 }
 
 const API_BASE = `${BaseUrl}api`;
