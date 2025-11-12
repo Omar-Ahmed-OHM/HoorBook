@@ -43,7 +43,7 @@ const url= `${BaseUrl}api/user/login`
     try{
       const res :ApiResponse<Login> = await Postresponse(url,login)
       const { access_token, user, token_type } = res.data;
-      Cookies.set("access_token_login", access_token, { expires: 1 });
+      Cookies.set("access_token_login", access_token , { expires: 3650 });
       Cookies.set("token_type_login", token_type);
       Cookies.set("login_user_id", user.id.toString());
       Cookies.set("login_user_name", user.name);
@@ -128,7 +128,7 @@ if (user.pointsSettings) {
 
       const { access_token, token_type, user } = res.data.data;
 
-      Cookies.set("access_token_login", access_token, { expires: 1 });
+      Cookies.set("access_token_login", access_token,{ expires: 3650 });
       Cookies.set("token_type_login", token_type);
       Cookies.set("login_user_id", user.id.toString());
       Cookies.set("login_user_name", user.name);
