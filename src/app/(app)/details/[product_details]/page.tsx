@@ -19,7 +19,7 @@ import { useCartStore } from "@/app/store/cartStore";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-
+import Select from "react-select";
 import { NavigationOptions } from "swiper/types";
 export default function Details() {
   const [showPopup, setShowPopup] = useState(false);
@@ -320,47 +320,59 @@ const imgcomment=`${BaseUrl}${details.image}`
                 ))}
               </select>
 
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-gray-600 w-full">
                 {selectedUnit === "Packet"
                   ? `(متاح ${maxQuantity} ${maxQuantity > 1 ? "دسته" : "كرتونة"})`
                   : selectedUnit === "Piece"
                     ? selectedColor
                       ? `(متاح ${selectedColor.stock} قطعة)`
+
                       : `(متاح ${details.stock} قطعة)`
                     : ""}
               </span>
             </div>
             ):(
 
-               <div className="flex items-center gap-2">
-              <select
-                value={quantity}
-                onChange={(e) => {
-                  const val = Number(e.target.value);
-                  setQuantity(val);
-                  handelchange("qty", val);
-                }}
-                className="p-2 border rounded-md text-sm"
-                disabled={maxQuantity === 0}
-              >
-                <option value={0} disabled>اختر الكمية</option>
-                {Array.from({ length: maxQuantity }, (_, i) => i + 1).map((num) => (
-                  <option key={num} value={num}>
-                    {num}
-                  </option>
-                ))}
-              </select>
+               <div className="flex items-center gap-2 w-full md:w-1/2">
+  <Select
+    value={{ value: quantity, label: quantity === 0 ? "اختر الكمية" : quantity }}
+    onChange={(option) => {
+      const val = option?.value ?? 0;
+      setQuantity(val);
+      handelchange("qty", val);
+    }}
+    isDisabled={maxQuantity === 0}
+    placeholder="اختر الكمية"
+    options={Array.from({ length: maxQuantity }, (_, i) => ({
+      value: i + 1,
+      label: `${i + 1}`,
+    }))}
+    menuPlacement="bottom" 
+    styles={{
+      control: (base) => ({
+        ...base,
+        borderRadius: "0.375rem",
+        padding: "2px 4px",
+        fontSize: "0.875rem",
+      }),
+      menu: (base) => ({
+        ...base,
+        zIndex: 9999,
+      }),
+    }}
+    className="w-auto"
+  />
 
-              <span className="text-sm text-gray-600">
-                {selectedUnit === "Packet"
-                  ? `(متاح ${maxQuantity} ${maxQuantity > 1 ? "دسته" : "كرتونة"})`
-                  : selectedUnit === "Piece"
-                    ? selectedColor
-                      ? `(متاح ${selectedColor.stock} قطعة)`
-                      : `(متاح ${details.stock} قطعة)`
-                    : ""}
-              </span>
-            </div>
+  <span className="text-sm text-gray-600">
+    {selectedUnit === "Packet"
+      ? `(متاح ${maxQuantity} ${maxQuantity > 1 ? "دسته" : "كرتونة"})`
+      : selectedUnit === "Piece"
+        ? selectedColor
+          ? `(متاح ${selectedColor.stock} قطعة)`
+          : `(متاح ${details.stock} قطعة)`
+        : ""}
+  </span>
+</div>
             )}
           </div>
 

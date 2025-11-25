@@ -15,6 +15,7 @@ import { BaseUrl, headers } from "@/app/components/Baseurl";
 import { useCartStore } from "@/app/store/cartStore";
 import React from "react";
 import Cookies from "js-cookie";
+import Not_found from '../../../../../public/asset/images/notfound.png'
 
 import { CallApi } from "@/app/lib/utilits";
 import toast from "react-hot-toast";
@@ -257,7 +258,6 @@ const IconsBlock = (cartCount: number) => (
   </div>
 
   <div className="w-full md:w-full flex justify-center items-center">
-    <Link href="/Products" className="w-full md:w-full flex justify-center items-center">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center bg-white/90 rounded-full px-4 py-2 shadow-inner focus-within:ring-2 focus-within:ring-yellow-400 transition">
           <Search className="text-gray-500 ml-2" size={18} />
@@ -265,10 +265,10 @@ const IconsBlock = (cartCount: number) => (
             type="text"
             placeholder="إبحث عن منتج..."
             className="bg-transparent flex-1 text-sm focus:outline-none text-gray-700 placeholder:text-gray-400"
+            onChange={(e)=>{setInputValue(e.target.value)}}
           />
         </div>
       </div>
-    </Link>
   </div>
 
 <div>
@@ -300,11 +300,17 @@ const IconsBlock = (cartCount: number) => (
 </div>
     <div className="p-4 mb-4">
 
-      {renderProducts.length === 0 ? (
-       <div className="flex justify-center items-center min-h-[60vh]">
-      <div className="w-16 h-16 border-8 border-purple-600 border-t-transparent rounded-full animate-spin" />
-    </div>
-        ) : (
+      {loading && renderProducts.length === 0 ? (
+  <div className="flex justify-center items-center min-h-[60vh]">
+    <div className="w-16 h-16 border-8 border-purple-600 border-t-transparent rounded-full animate-spin" />
+  </div>
+) : !loading && renderProducts.length === 0 && inputValue.trim() ? (
+  <div className="flex flex-col justify-center items-center min-h-[60vh] text-center">
+    <Image src={Not_found} alt="not found" unoptimized width={200}/>
+    <p className="text-lg font-semibold text-gray-700">لم نجد ما بحثت عنه</p>
+    <p className="text-sm text-gray-500 mt-2">جرب كلمة بحث مختلفة</p>
+  </div>
+) : (
           <section>
 
             {loader&&
